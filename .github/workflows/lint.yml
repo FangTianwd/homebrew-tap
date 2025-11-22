@@ -1,0 +1,39 @@
+name: Lint Formulae
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Run brew audit
+        run: |
+          for formula in Formula/*/*.rb; do
+            echo "🔍 Auditing $formula..."
+            brew audit --strict "$formula" || echo "❌ Audit failed for $formula"
+          done
+
+      - name: Run brew style
+        run: |
+          for formula in Formula/*/*.rb; do
+            echo "🎨 Checking style for $formula..."
+            brew style "$formula" || echo "❌ Style check failed for $formula"
+          done
+
+      - name: Check for formula syntax errors
+        run: |
+          for formula in Formula/*/*.rb; do
+            echo "⚡ Checking syntax for $formula..."
+            brew tap-syntax "$formula" || echo "❌ Syntax error in $formula"
+          done
