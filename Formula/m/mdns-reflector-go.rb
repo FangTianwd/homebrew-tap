@@ -1,8 +1,8 @@
 class MdnsReflectorGo < Formula
   desc "mDNS reflector for forwarding multicast DNS packets between network interfaces"
   homepage "https://github.com/FangTianwd/mdns-reflector-go"
-  url "file:///Users/jiangshengcheng/mdns_reflector_go"
-  sha256 :no_check
+  # For local development/testing
+  head "file:///Users/jiangshengcheng/mdns_reflector_go", using: :git
   license "MIT"
 
   depends_on "go" => :build
