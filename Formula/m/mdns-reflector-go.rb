@@ -2,17 +2,15 @@ class MdnsReflectorGo < Formula
   desc "mDNS reflector for forwarding multicast DNS packets between network interfaces"
   homepage "https://github.com/FangTianwd/mdns_reflector_go"
 
-  url "https://github.com/FangTianwd/mdns_reflector_go/archive/refs/tags/v1.0.1.tar.gz"
-  sha256 "1679fc207f8202d3bde7126380a211357ac8a53ba7f0bc2e16af29f8159f45f0"
+  # 使用预编译二进制文件 - 无需本地编译，安装速度极快！
+  url "https://github.com/FangTianwd/mdns_reflector_go/releases/download/v1.0.2/mdns-reflector-go-darwin-#{Hardware::CPU.arch}-1.0.2.tar.gz"
+  sha256 arm64: "e766899d038da1caeaec7693c35a4108cf76ca331da269c663b59ed8ddb7a2a6",
+         intel: "e766899d038da1caeaec7693c35a4108cf76ca331da269c663b59ed8ddb7a2a6"
 
   license "MIT"
 
-  depends_on "go" => :build
-
   def install
-    # 使用 Go 代理加速依赖下载
-    ENV["GOPROXY"] = "https://goproxy.cn,direct"
-    system "go", "build", "-ldflags", "-s -w", "-o", bin/"mdns-reflector-go", "."
+    bin.install "mdns-reflector-go"
   end
 
   service do
