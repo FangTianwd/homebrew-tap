@@ -5,9 +5,9 @@ class MdnsReflectorGo < Formula
   # 使用预编译二进制文件 - 无需本地编译，安装速度极快！
   url "https://github.com/FangTianwd/mdns_reflector_go/releases/download/v1.2.0/mdns-reflector-go-darwin-#{Hardware::CPU.arch}-v1.2.0.tar.gz"
   if Hardware::CPU.arm?
-    sha256 "cf13adc592b5a1d38a79ba79dd08f3121a6832a3296d1634dd0329ff7af554ae"
+    sha256 "f26b148888fa5940a41cf7ae685611b06e38fd553dbca5fd2233e9b02f30997c"
   else
-    sha256 "0e078961475d1cad921b2ea67bdded30867f8b66f4607c2720f461ce883cc4f4"
+    sha256 "dacbacd2e6d9d2a8ae48097b324c8042784b38cf7d282176d7d544d7aa8b102c"
   end
 
   license "MIT"
